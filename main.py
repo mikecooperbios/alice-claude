@@ -31,12 +31,13 @@ SYSTEM_PROMPT = (
     "Пиши цифры словами. Максимум 2-3 коротких предложения."
 )
 
-_MARKDOWN_RE = re.compile(r"[*#`_~>|\\]|```.*?```|\[.*?\]\(.*?\)", re.DOTALL)
+_LINK_RE = re.compile(r"\[([^\]]*?)\]\(.*?\)", re.DOTALL)
+_MARKDOWN_RE = re.compile(r"[*#`_~>|\\]|```.*?```", re.DOTALL)
 _EXTRA_SPACES_RE = re.compile(r" {2,}")
 
 
 def clean_for_tts(text: str) -> str:
-    """Strip markdown artifacts that degrade TTS quality."""
+    text = _LINK_RE.sub(r"\1", text)  # [label](url) → label
     text = _MARKDOWN_RE.sub("", text)
     text = _EXTRA_SPACES_RE.sub(" ", text)
     return text.strip()

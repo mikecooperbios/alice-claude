@@ -1,6 +1,6 @@
-﻿.env
+.env
+data.db
 __pycache__/
 *.pyc
-*.pyo
-.venv/
-venv/
+workspace/*/
+!workspace/.gitkeep

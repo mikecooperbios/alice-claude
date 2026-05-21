@@ -1,4 +1,8 @@
-﻿fastapi
+fastapi
 uvicorn[standard]
-anthropic
+anthropy
 python-dotenv
+notion-client
+httpx
+typer
+rich
